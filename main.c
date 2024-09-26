@@ -12,7 +12,7 @@ bus_t bus = {NULL, NULL, NULL, 0};
 */
 int main(int argc, char *argv[])
 {
-	char *line_content;
+	char *line_content = NULL;
 	FILE *bytecode_file;
 	size_t buffer_size = 0;
 	ssize_t line_length = 1;
@@ -26,7 +26,7 @@ int main(int argc, char *argv[])
 	}
 
 	bytecode_file = fopen(argv[1], "r");
-	bus.file = bytecode_file;
+	bus.bytecode_file = bytecode_file;
 
 	if (!bytecode_file)
 	{
@@ -38,7 +38,7 @@ int main(int argc, char *argv[])
 	{
 		line_content = NULL;
 		line_length = getline(&line_content, &buffer_size, bytecode_file);
-		bus.content = line_content;
+		bus.line_content = line_content;
 		line_number++;
 
 		if (line_length > 0)
